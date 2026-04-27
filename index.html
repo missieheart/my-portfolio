@@ -3,341 +3,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nur Nabilah | Portfolio</title>
+    <title>Nur Nabilah | Tech & Design Portfolio</title>
+    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #4f46e5; /* Indigo */
-            --secondary-color: #1e293b; /* Slate */
-            --bg-light: #f8fafc;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --white: #ffffff;
+            --primary: #6366f1;
+            --primary-dark: #4338ca;
+            --accent: #f43f5e;
+            --bg: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.7;
-            scroll-behavior: smooth;
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Navigation */
+        /* --- Animated Background Elements --- */
+        .blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(50px);
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        /* --- Navigation --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 10%;
+            padding: 25px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
             z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            letter-spacing: -1px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li { margin-left: 30px; }
+        nav ul { display: flex; list-style: none; gap: 30px; }
         nav ul li a {
             text-decoration: none;
-            color: var(--secondary-color);
-            font-weight: 500;
+            color: var(--text-main);
             font-size: 0.9rem;
+            font-weight: 500;
             transition: 0.3s;
+            opacity: 0.7;
         }
+        nav ul li a:hover { opacity: 1; color: var(--primary); }
 
-        nav ul li a:hover { color: var(--primary-color); }
-
-        /* Hero Section */
+        /* --- Hero Section --- */
         .hero {
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at top right, #e0e7ff 0%, #ffffff 40%);
             padding: 0 10%;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .hero-content { flex: 1; }
+        .hero-image { flex: 1; display: flex; justify-content: center; position: relative; }
+
+        .hero h4 { color: var(--primary); font-weight: 600; letter-spacing: 2px; margin-bottom: 10px; }
+        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero p { color: var(--text-dim); font-size: 1.1rem; max-width: 500px; margin-bottom: 30px; }
+
+        .profile-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            top: -5%;
+            left: -5%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            z-index: -1;
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
 
         .hero img {
-            width: 180px;
-            height: 180px;
+            width: 320px;
+            height: 320px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 25px;
-            border: 4px solid var(--white);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 5px solid var(--bg);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 800px;
-            margin-bottom: 30px;
-        }
-
-        .btn-main {
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
+        .btn {
+            padding: 15px 35px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            display: inline-block;
             transition: 0.3s;
         }
 
-        .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
-        }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
+        .btn-primary:hover { transform: translateY(-5px); background: var(--primary-dark); }
 
-        /* Section Styling */
+        /* --- Sections General --- */
         section { padding: 100px 10%; }
-        
-        h2 {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--secondary-color);
-        }
+        .section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
+        .section-title span { color: var(--primary); }
 
-        /* Experience Cards */
-        .exp-grid {
+        /* --- Experience Cards --- */
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            transition: 0.4s;
+        }
+        .glass-card:hover { border-color: var(--primary); transform: translateY(-10px); }
+
+        .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .exp-card h3 { color: var(--primary); margin-bottom: 10px; }
+        .exp-card .date { font-size: 0.8rem; color: var(--accent); font-weight: 700; text-transform: uppercase; }
+
+        /* --- Skills Grid --- */
+        .skills-wrap {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
-            margin-bottom: 50px;
+        }
+        .skill-item {
+            background: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+        .skill-item i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; display: block; }
+
+        /* --- Contact --- */
+        .contact-box {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            margin-top: 50px;
         }
 
-        .exp-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid #edf2f7;
-            transition: 0.3s;
-        }
-
-        .exp-card:hover { border-color: var(--primary-color); }
-        .exp-card h3 { color: var(--primary-color); margin-bottom: 5px; }
-        .exp-card .company { font-weight: 600; color: var(--secondary-color); display: block; margin-bottom: 10px; }
-
-        /* Skills */
-        .skills-container {
+        .social-icons {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .skill-badge {
-            background: #eff6ff;
-            color: var(--primary-color);
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Projects */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .project-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid #edf2f7;
-            transition: 0.3s;
-        }
-
-        .project-card:hover { transform: translateY(-10px); }
-
-        /* Contact */
-        .contact { text-align: center; background: var(--secondary-color); color: var(--white); }
-        .contact h2 { color: white; }
-        .contact p { opacity: 0.8; margin-bottom: 30px; }
-
-        .social-links { display: flex; justify-content: center; gap: 20px; }
-        .social-links a {
+        .social-icons a {
+            width: 55px;
+            height: 55px;
             background: rgba(255,255,255,0.1);
-            width: 60px;
-            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             text-decoration: none;
             transition: 0.3s;
         }
+        .social-icons a:hover { background: white; color: var(--primary); transform: scale(1.1); }
 
-        .social-links a:hover { background: var(--primary-color); transform: scale(1.1); }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: var(--secondary-color);
-            color: rgba(255,255,255,0.5);
-            font-size: 0.8rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .info-bar {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-        .info-bar span { margin: 0 15px; }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .hero { flex-direction: column-reverse; text-align: center; height: auto; padding-top: 150px; }
+            .hero h1 { font-size: 2.8rem; }
             .exp-grid { grid-template-columns: 1fr; }
             nav ul { display: none; }
-            section { padding: 60px 5%; }
         }
     </style>
 </head>
 <body>
 
+    <div class="blob"></div>
+
     <nav>
-        <div class="logo">NABILA.ARWIN</div>
+        <div class="logo">NABILA.DEV</div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Work</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <section class="hero" id="home">
-        <!-- Add your image here -->
-        <img src="profile.jpg" alt="Nur Nabilah">
-        <h1>Nur Nabilah Arwin</h1>
-        <p>Software Developer specializing in Management Information Systems (MIS). Currently driving technology operations at Nasional Security Printers with a background in IT from Lembaga Tabung Haji.</p>
-        <a href="#contact" class="btn-main">Get In Touch</a>
-        
-        <div class="info-bar">
-            <span><i class="fas fa-map-marker-alt"></i> Kuala Lumpur, MY</span>
-            <span><i class="fas fa-code"></i> Software Developer</span>
+        <div class="hero-content" data-aos="fade-right">
+            <h4>WELCOME TO MY WORLD</h4>
+            <h1>Hi, I'm <span style="color: var(--primary);">Nabilah</span></h1>
+            <p>Software Developer & MIS Specialist focused on building secure, digital solutions at Nasional Security Printers.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">Let's Talk <i class="fas fa-paper-plane"></i></a>
+            </div>
+        </div>
+        <div class="hero-image" data-aos="zoom-in">
+            <div class="profile-wrapper">
+                <img src="profile.jpg" alt="Nur Nabilah">
+            </div>
         </div>
     </section>
 
-    <section id="about">
-        <h2>Professional Profile</h2>
-        <p style="text-align: center; max-width: 850px; margin: 0 auto 40px auto; font-size: 1.1rem;">
-            I am a results-driven technology professional with experience in software development, system support, and AI-driven solutions. My expertise lies in bridging the gap between complex technical systems and practical business needs, ensuring digital transformation is both efficient and secure.
-        </p>
-        
-        <div class="skills-container">
-            <div class="skill-badge">Software Development</div>
-            <div class="skill-badge">MIS</div>
-            <div class="skill-badge">AI Solutions</div>
-            <div class="skill-badge">System Support</div>
-            <div class="skill-badge">HTML/CSS</div>
-            <div class="skill-badge">Graphic Design</div>
-            <div class="skill-badge">Digital Transformation</div>
+    <section id="about" data-aos="fade-up">
+        <h2 class="section-title">My <span>Expertise</span></h2>
+        <div class="skills-wrap">
+            <div class="skill-item">
+                <i class="fas fa-code"></i>
+                <span>Development</span>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-database"></i>
+                <span>MIS Systems</span>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-robot"></i>
+                <span>AI Solutions</span>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-pen-nib"></i>
+                <span>Graphic Design</span>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-shield-halved"></i>
+                <span>System Security</span>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-mobile-screen"></i>
+                <span>Digital Marketing</span>
+            </div>
         </div>
     </section>
 
-    <section id="experience" style="background: #f1f5f9;">
-        <h2>Experience</h2>
+    <section id="experience">
+        <h2 class="section-title">Career <span>Journey</span></h2>
         <div class="exp-grid">
-            <div class="exp-card">
+            <div class="glass-card exp-card" data-aos="fade-right">
+                <span class="date">Current</span>
                 <h3>MIS Operations</h3>
-                <span class="company">Nasional Security Printers</span>
-                <p>Contributing to enterprise technology operations and management information systems in a high-security environment.</p>
+                <p style="color: var(--primary); font-weight: 600;">Nasional Security Printers</p>
+                <p>Managing high-security technology operations and streamlining information systems for enterprise efficiency.</p>
             </div>
-            <div class="exp-card">
-                <h3>IT Department (Trainee)</h3>
-                <span class="company">Lembaga Tabung Haji</span>
-                <p>Assisted in IT infrastructure management and provided technical support for enterprise-level systems.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
-                <h3>Digital Transformation</h3>
-                <p>Implementing AI-driven tools to optimize internal MIS workflows and reporting efficiency.</p>
-            </div>
-            <div class="project-card">
-                <i class="fas fa-laptop-code" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
-                <h3>Enterprise Support</h3>
-                <p>Developing practical technology solutions for professional environments, focusing on analytical problem-solving.</p>
-            </div>
-            <div class="project-card">
-                <i class="fas fa-paint-brush" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 15px;"></i>
-                <h3>Brand Identity</h3>
-                <p>Created full brand identities including logos and social media campaigns for digital marketing growth.</p>
+            <div class="glass-card exp-card" data-aos="fade-left">
+                <span class="date">Previous</span>
+                <h3>IT Department</h3>
+                <p style="color: var(--primary); font-weight: 600;">Lembaga Tabung Haji</p>
+                <p>Supported corporate IT infrastructure and delivered technical solutions for internal enterprise departments.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <h2>Let's Connect</h2>
-        <p>I'm currently open to new opportunities and collaborations in Kuala Lumpur or remotely.</p>
-        
-        <div class="social-links">
-            <!-- Instagram -->
-            <a href="https://instagram.com/missiehear" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <!-- GitHub -->
-            <a href="https://github.com/missieheart" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <!-- Email -->
-            <a href="mailto:arwinnabilah@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <!-- WhatsApp -->
-            <a href="https://wa.me/60192170270" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        
-        <div style="margin-top: 40px; font-size: 0.9rem;">
-            <p><i class="fas fa-phone"></i> +60 19-217 0270</p>
-            <p><i class="fas fa-envelope"></i> arwinnabilah@gmail.com</p>
+    <section id="contact" data-aos="zoom-in">
+        <div class="contact-box">
+            <h2>Have a project in mind?</h2>
+            <p style="margin-bottom: 30px;">I'm currently available for freelance work and full-time opportunities.</p>
+            <a href="mailto:arwinnabilah@gmail.com" class="btn" style="background: white; color: var(--primary);">Email Me Directly</a>
+            
+            <div class="social-icons">
+                <a href="https://wa.me/60192170270" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://github.com/missieheart" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://instagram.com/missiehear" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:arwinnabilah@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.7;">
+                <i class="fas fa-location-dot"></i> Kuala Lumpur, Malaysia
+            </p>
         </div>
     </section>
 
-    <footer>
-        &copy; 2024 Nur Nabilah Binti Arwin. Built with <i class="fas fa-heart" style="color: #ff4d4d;"></i> in Kuala Lumpur.
+    <footer style="text-align: center; padding: 40px; opacity: 0.5; font-size: 0.8rem;">
+        &copy; 2024 Nur Nabilah Binti Arwin. All rights reserved.
     </footer>
 
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 </body>
 </html>
